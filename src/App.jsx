@@ -11,12 +11,13 @@ import {
   TopCharts,
 } from "./pages";
 
+// background-image: linear-gradient(to right top, #2f0537, #44005c, #550087, #5e00b6, #5a12eb);
 const App = () => {
   return (
     <div className="relative flex">
       <Sidebar />
 
-      <div className="flex-1 flex flex-col bg-gradient-to-br from-dark-green to-light-green ">
+      <div className="flex-1 flex flex-col bg-gradient-to-br from-dark-purple to-light-purple">
         <Searchbar />
 
         <div className="px-6 h-[calc(100vh-72px)] overflow-y-scroll hide-scrollbar flex xl:flex-row flex-col-reverse ">

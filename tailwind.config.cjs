@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "dark-green": "#2a341f",
-        "light-green": "#6d6e2c",
+        "dark-purple": "#2f0537",
+        "light-purple": "#5a12eb",
       },
       animation: {
         slideup: "slideup 1s ease-in-out",
