@@ -1,5 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+// import { createSlice } from "@reduxjs/toolkit";
 
-const playerSlice = createSlice({});
+// const playerSlice = createSlice({
+//   name: "player",
+// });
 
-export default playerSlice.reducer;
+// export default playerSlice.reducer;
