@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { Searchbar, Sidebar, TopPlay } from "./components";
+import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
 import {
   ArtistDetails,
   TopArtists,
@@ -11,8 +12,8 @@ import {
   TopCharts,
 } from "./pages";
 
-// background-image: linear-gradient(to right top, #2f0537, #44005c, #550087, #5e00b6, #5a12eb);
 const App = () => {
+  const { activeSong } = useSelector((state) => state.player);
   return (
     <div className="relative flex">
       <Sidebar />
@@ -38,6 +39,11 @@ const App = () => {
         </div>
       </div>
       {/* ACTIVE SONG RENDERED */}
+      {activeSong?.title && (
+        <div className="absolute">
+          <MusicPlayer />
+        </div>
+      )}
     </div>
   );
 };
