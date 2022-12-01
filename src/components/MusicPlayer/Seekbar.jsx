@@ -1,14 +1,6 @@
 import React from "react";
 
-const Seekbar = ({
-  value,
-  min,
-  max,
-  duration,
-  onInput,
-  setSeekTime,
-  appTime,
-}) => {
+const Seekbar = ({ value, min, max, onInput, setSeekTime, appTime }) => {
   const getTime = (time) =>
     `${Math.floor(time / 60)}:${`0${Math.floor(time / 60)}`.slice(-2)}`;
 
@@ -35,7 +27,7 @@ const Seekbar = ({
       <button
         type="button"
         onClick={() => setSeekTime(appTime + 5)}
-        className="hidden lg:mr-4 lg:block text-white"
+        className="hidden lg:ml-4 lg:block text-white"
       >
         +
       </button>

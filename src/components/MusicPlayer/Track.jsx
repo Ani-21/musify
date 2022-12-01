@@ -2,7 +2,7 @@ import React from "react";
 
 const Track = ({ isPlaying, isActive, activeSong }) => {
   return (
-    <div className="flex-1 flex-start items-center justify-start">
+    <div className="flex-1 flex items-center justify-start">
       <div
         className={`${
           isActive && isPlaying ? "animate-[spin_3s_linear_infinite]" : ""

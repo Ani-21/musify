@@ -49,8 +49,6 @@ const MusicPlayer = () => {
   };
 
   const handlePrevSong = () => {
-    dispatch(playPause(false));
-
     if (currentIndex === 0) {
       dispatch(prevSong(currentSongs.length - 1));
     } else if (shuffle) {
@@ -67,7 +65,6 @@ const MusicPlayer = () => {
         isPlaying={isPlaying}
         activeSong={activeSong}
       />
-
       <div className="flex-1 flex flex-col items-center justify-center">
         <Controls
           isPlaying={isPlaying}

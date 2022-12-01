@@ -38,9 +38,9 @@ const App = () => {
           </div>
         </div>
       </div>
-      {/* ACTIVE SONG RENDERED */}
+
       {activeSong?.title && (
-        <div className="absolute">
+        <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-light-purple backdrop-blur-lg rounded-t-3xl z-10">
           <MusicPlayer />
         </div>
       )}
