@@ -52,6 +52,10 @@ const TopPlay = () => {
   const divRef = useRef(null);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    divRef.current.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   const handlePause = () => {
     dispatch(playPause(true));
   };
@@ -81,8 +85,9 @@ const TopPlay = () => {
         </div>
 
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays.map((song, i) => (
+          {topPlays?.map((song, i) => (
             <TopChartCard
+              key={song.key}
               i={i}
               song={song}
               isPlaying={isPlaying}
