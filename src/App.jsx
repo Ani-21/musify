@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-import { Searchbar, Sidebar, TopPlay } from "./components";
+import { Searchbar, Sidebar, MusicPlayer, TopPlay } from "./components";
 import {
   ArtistDetails,
   TopArtists,
@@ -11,8 +12,8 @@ import {
   TopCharts,
 } from "./pages";
 
-// background-image: linear-gradient(to right top, #2f0537, #44005c, #550087, #5e00b6, #5a12eb);
 const App = () => {
+  const { activeSong } = useSelector((state) => state.player);
   return (
     <div className="relative flex">
       <Sidebar />
@@ -29,7 +30,7 @@ const App = () => {
               <Route path="/around-you" element={<AroundYou />} />
               <Route path="/artists/:id" element={<ArtistDetails />} />
               <Route path="/songs/:songid" element={<SongDetails />} />
-              <Route path="/search/:query" element={<Search />} />
+              <Route path="/search/:searchTerm" element={<Search />} />
             </Routes>
           </div>
           <div className="xl:sticky relative top-0 h-fit">
@@ -37,7 +38,12 @@ const App = () => {
           </div>
         </div>
       </div>
-      {/* ACTIVE SONG RENDERED */}
+
+      {activeSong?.title && (
+        <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-light-purple backdrop-blur-lg rounded-t-3xl z-10">
+          <MusicPlayer />
+        </div>
+      )}
     </div>
   );
 };

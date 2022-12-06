@@ -1,21 +1,35 @@
+import { useDispatch, useSelector } from "react-redux";
+
 import { Error, Loader, SongCard } from "../components";
 import { genres } from "../assets/constants";
-import { useGetTopChartsQuery } from "../redux/services/shazamCore";
+
+import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
+import { selectGenreListId } from "../redux/features/playerSlice";
 
 const Discover = () => {
-  const { data, isFetching, error } = useGetTopChartsQuery();
-  const genreTitle = "Pop";
+  const dispatch = useDispatch();
+  // state
+  const { activeSong, isPlaying, genreListId } = useSelector(
+    (state) => state.player
+  );
+
+  // fetching data
+  const { data, isFetching, error } = useGetSongsByGenreQuery(
+    genreListId || "POP"
+  );
+
+  if (isFetching) return <Loader />;
+
+  if (error) return <Error />;
 
   return (
     <div className="flex flex-col">
       <div className="w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10 ">
-        <h2 className="font-bold text-white text-2xl text-left">
-          Discover {genreTitle}
-        </h2>
+        <h2 className="font-bold text-white text-2xl text-left">Discover</h2>
         <select
-          className="bg-black text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
-          value={"pop"}
-          onChange={() => {}}
+          className="bg-[#382B47] text-gray-300 p-3 text-sm rounded-lg outline-none sm:mt-0 mt-5"
+          value={genreListId}
+          onChange={(e) => dispatch(selectGenreListId(e.target.value))}
         >
           {genres.map((genre) => (
             <option key={genre.value} value={genre.value}>
@@ -27,7 +41,14 @@ const Discover = () => {
 
       <div className="flex flex-wrap sm:justify-start justify-center gap-8">
         {data?.map((song, i) => (
-          <SongCard key={song.key} i={i} song={song} data={data} />
+          <SongCard
+            key={i}
+            i={i}
+            song={song}
+            data={data}
+            activeSong={activeSong}
+            isPlaying={isPlaying}
+          />
         ))}
       </div>
     </div>
